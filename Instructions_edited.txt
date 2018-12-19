@@ -61,6 +61,7 @@ You will be able to see all the files of the project!
 Step 7: Logging in with Gitbash
 - Open Git Bash in your PC
 - Enter 'git config --global user.name "**Input your Github username over here**"'
+- Enter 'git config --global user.email "**Input your Github email over here**"'
 - A login window will open in which you need to enter your details & login.
 Done, your github cmd (git bash) is now connected with your github account, now, you will be able
 to send files from your computers to Github.

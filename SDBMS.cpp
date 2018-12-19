@@ -6,3 +6,9 @@ class user
 private:
     char user[10][20],pass[10][20]; // Variables for storing usernames & passwords of 10 users
 };
+
+class student
+{
+private:
+    char name[30]; // 30 characters full name
+};

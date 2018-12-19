@@ -30,6 +30,18 @@ void showmouseptr() // Mouse pointer show(M)
     int86(0X33, &i, &o);
 }
 
+void restrictmouse(int x1, int y1, int x2, int y2) // Mouse restriction in screen
+{
+    i.x.ax = 7; // Top left boundary
+    i.x.cx = x1;
+    i.x.dx = x2;
+    int86(0X33, &i, &o);
+    i.x.ax = 8; // Bottom right boundary
+    i.x.cx = y1;
+    i.x.dx = y2;
+    int86(0X33, &i, &o);
+}
+
 void main()
 {
     int gd = DETECT, gm; // graphic variables

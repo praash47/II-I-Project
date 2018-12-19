@@ -1,5 +1,7 @@
 #include<iostream.h>
 #include<conio.h>
+#include<graphics.h> // For drawing graphics
+#include<dos.h> // For getting date
 
 class user
 {
@@ -12,3 +14,8 @@ class student
 private:
     char name[30]; // 30 characters full name
 };
+
+void main()
+{
+    // Draw a rectangle
+}

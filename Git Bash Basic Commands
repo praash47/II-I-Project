@@ -1,0 +1,16 @@
+FILE ADDITION COMMANDS (Every command serial-wise)
+1. git add <file-name> - Add/Change a file to github.
+2. git commit -m "<message to be inserted>" - Commit/Confirm file(s) upload to github
+3. git push - Push all committed files to Github server
+
+CLONING GITHUB FOLDER TO COMPUTER FOLDER
+4. git clone <github folder link>
+
+CHECK STATUS OF GIT STATION
+5. git status
+
+PULL FROM THE SERVER
+6. git pull
+
+LOGIN TO GITBASH
+7. git config --global user.name "<your username>"

@@ -1,0 +1,4 @@
+For User Section:
+class-name: user
+variable-name for username: name
+variable-name for password: pass

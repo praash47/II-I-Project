@@ -15,7 +15,28 @@ private:
     char name[30]; // 30 characters full name
 };
 
+/* Mouse Showing Functions */
+union REGS i,o;
+
+int initmouse() // Mouse Initialization
+{
+    i.x.ax = 0;
+    int86(0X33, &i, &o);
+    return(o.x.ax);
+}
+void showmouseptr() // Mouse pointer show
+{
+    i.x.ax = 1;
+    int86(0X33, &i, &o);
+}
+
 void main()
 {
-    // Draw a rectangle
+    int status, gd = DETECT, gm;
+
+    initgraph(&gd,&gm,"C:\\TC\\BGI");
+
+    showmouseptr(); // This shows mouse!
+
+    getch();
 }

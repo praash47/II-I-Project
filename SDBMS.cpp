@@ -15,16 +15,16 @@ private:
     char name[30]; // 30 characters full name
 };
 
-/* Mouse Showing Functions */
-union REGS i,o;
+/* Mouse Showing Functions(M) */
+union REGS i,o; // Mouse input & output controller
 
-int initmouse() // Mouse Initialization
+int initmouse() // Mouse initialization(M)
 {
     i.x.ax = 0;
     int86(0X33, &i, &o);
     return(o.x.ax);
 }
-void showmouseptr() // Mouse pointer show
+void showmouseptr() // Mouse pointer show(M)
 {
     i.x.ax = 1;
     int86(0X33, &i, &o);
@@ -32,11 +32,11 @@ void showmouseptr() // Mouse pointer show
 
 void main()
 {
-    int status, gd = DETECT, gm;
+    int gd = DETECT, gm; // graphic variables
 
-    initgraph(&gd,&gm,"C:\\TC\\BGI");
+    initgraph(&gd,&gm,"C:\\TC\\BGI"); // Loads driver for graphics
 
-    showmouseptr(); // This shows mouse!
+    showmouseptr(); // This shows mouse!(M)
 
     getch();
 }

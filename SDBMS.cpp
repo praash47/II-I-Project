@@ -43,11 +43,18 @@ void restrictmouse(int x1, int y1, int x2, int y2) // Mouse restriction in scree
     int86(0x33, &i, &o);
 }
 
+void header() // Logo printing function
+{
+    cout << "                  === STUDENT DATABASE MANAGEMENT SYSTEM ===";
+}
+
 void main()
 {
-    initgraph(&gd,&gm,"C:\\TC\\BGI"); // Loads driver for graphics
+    initgraph(&gd,&gm,"C:\\turboc3\\BGI"); // Loads driver for graphics
 
     showmouseptr(); // This shows mouse!(M)
+
+    header();
 
     getch();
 }

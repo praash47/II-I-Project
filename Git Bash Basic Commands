@@ -14,3 +14,4 @@ PULL FROM THE SERVER
 
 LOGIN TO GITBASH
 7. git config --global user.name "<your username>"
+8. git config --global user.email "<your email>"

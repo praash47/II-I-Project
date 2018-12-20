@@ -1,0 +1,69 @@
+INSTRUCTION:
+
+Follow these instructions SEQUENTIALLY! For any help: Message me (Aashish)
+
+Step 1: Download & Install Codeblocks
+- Go to this link: http://bit.ly/aascodeblocks
+- The link above will download codeblocks, install codeblocks in your computer (Drive C)
+- Check all while installing, after installation completes, select GNU GCC Compiler (This will be our compiler for
+the project)
+- After installation completes, a popbox will be up asking file associations, select Yes, associate Code::Blocks with
+C/C++ file types.
+Congrats, Step 1 Complete!
+
+Step 2: Create a Github account
+- Goto: http://bit.ly/aasjoingit
+- Input required details & press Create Account (!IMPORTANT: Input email which you can verify)
+- Press Continue
+- Hit Skip this step
+- Make sure YOU VERIFY YOUR EMAIL ADDRESS
+Congrats, GitHub Account created.
+
+Step 3: Download & Install Git (2.19.1/latest)
+- Goto: http://bit.ly/aasgitdownload
+- Download will begin, open setup and start installation process. 
+- Continue installation and in popup asking for "default editor", Choose Select other editor as Git's default
+editor.
+- A box asking for location will appear and navigate to folder when codeblocks is installed and select 
+"codeblocks.exe" file. Then press Test Custom Editor.
+- Codeblocks will open, Select "Test with associated editor".
+- Then a notepad file will open, delete all content, close the window and hit Save.
+- Github will display the Success message! Next >
+- Select "Use Git from Git Bash only" Next >
+- Select "Use the OpenSSL Library Next >
+- Select "Checkout as-is, commit as-is Next >
+- Select "Use Windows' default console window Next >
+- Next >
+- Install!
+- Remove tick from Release Notes & Hit Finish.
+- A cmd (command line) [Black screen with white letters] will open.
+Congrats, your git has been set-up. 
+
+Step 4: Give me your username
+- Message me your github username (the one you used to signin in Github).
+
+Step 5: Check your email
+- After I have added you to the project. Check email.
+- You will see my invitation, click it, then hit Accept.
+
+Step 6: Connecting local (folder inside PC) folder to Github main project folder
+- Then create a folder named "Project" in "Documents" in PC
+- Go to praash47/II-I-Project in repositories
+- Go to clone/download and copy the link "https://github.com/praash47/II-I-Project.git"
+- Enter "cd Documents" in Gitbash.
+- Enter "cd Project" in Gitbash.
+- Enter "git clone https://github.com/praash47/II-I-Project.git".
+- You will be connected to the project. (A "Main" in brackets will be displayed inside the project)
+Congrats, you are connected to the project.
+
+You will be able to see all the files of the project!
+
+Step 7: Logging in with Gitbash
+- Open Git Bash in your PC
+- Enter 'git config --global user.name "**Input your Github username over here**"'
+- Enter 'git config --global user.email "**Input your Github email over here**"'
+- A login window will open in which you need to enter your details & login.
+Done, your github cmd (git bash) is now connected with your github account, now, you will be able
+to send files from your computers to Github.
+
+Let us collaborate & make a great project!

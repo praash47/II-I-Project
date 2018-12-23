@@ -1,5 +1,8 @@
 #include<iostream.h>
 #include<conio.h>
+<<<<<<< HEAD
+#include<math.h>
+=======
 #include<graphics.h> // For drawing graphics & mouse controls
 #include<dos.h> // For getting date
 
@@ -63,4 +66,10 @@ void main()
 
 
     getch();
+}
+>>>>>>> 08bac56ff26755747348dab5eda2ab92771a903c
+
+void stu()
+{
+    cout<<"the following is just for fun. i am testing git bash. you can delete this okay."<<endl;
 }

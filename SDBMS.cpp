@@ -48,6 +48,11 @@ void header() // Logo printing function
     cout << "                  === STUDENT DATABASE MANAGEMENT SYSTEM ===";
 }
 
+void drawwindow()
+{
+
+}
+
 void main()
 {
     initgraph(&gd,&gm,"C:\\turboc3\\BGI"); // Loads driver for graphics
@@ -55,6 +60,7 @@ void main()
     showmouseptr(); // This shows mouse!(M)
 
     header();
+
 
     getch();
 }

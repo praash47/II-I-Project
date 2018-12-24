@@ -27,7 +27,11 @@ void hidemouse();
 int menu(int);
 int doctor();
 void adddoc();
+void adddoc1();
+void viewdoc();
+void updatedoc();
 void deletedoc();
+void deletedoc1();
 void searchdoc();
 int patient();
 void updatepat();
@@ -163,9 +167,9 @@ int sth(){
    dropmenu(menu,242,33,490,118,opt);
    switch(opt){
     case 0:adddoc();break;
-    case 1:updatepat();break;
-    case 2:deletedoc();break;
-    case 3:searchdoc();break;
+    case 1:viewdoc();break;
+    case 2:updatedoc();break;
+    case 3:deletedoc1();break;
     case 4:notice();break;
    }
   }else if(xm>=242&&xm<=490&&ym>=33&&ym<=118&&buttonm==1){
@@ -575,21 +579,22 @@ int rooms(){
 void manageroom(){
  int opt=-1,j;
  char menu[4][30]={"Check Fees by First Name","Check Fees by Last Name","Check Fees by ID","Check Fees by Grade"};
- dropmenu(menu,416,55,632,116,opt);
+ dropmenu(menu,416,55,632,129,opt);
  do{
   getmousepos(&buttonm,&xm,&ym);
-  if(xm>=416+10&&xm<=632-10&&ym>=55+8&&ym<=116-8&&buttonm==1){
-   for(j=0;j<(116-55-8)/14;j++)
+  if(xm>=416+10&&xm<=632-10&&ym>=55+8&&ym<=129-8&&buttonm==1){
+   for(j=0;j<(129-55-8)/14;j++)
     if((ym-55-8)/14==j){
      opt=j;
      break;
     }
-   dropmenu(menu,416,55,632,116,opt);
+   dropmenu(menu,416,55,632,129,opt);
    delay(200);
    switch(opt){
     case 0: notice();break;
     case 1: notice();break;
     case 2: notice();break;
+    case 3: notice();break;
    }
   }else if(buttonm==1){
    break;
@@ -624,6 +629,31 @@ void managetype(){
 }
 
 int about(){
+ char menu[3][30]={"About Project","About Group","Brief Usage Guide"};
+ int opt=-1,j;
+ close=1;
+ dropmenu(menu,322,33,485,93,opt);
+ do{
+  showmouse();
+  getmousepos(&buttonm,&xm,&ym);
+  if(xm>=322+10&&xm<=485-10&&ym>=33+8&&ym<=93-8&&buttonm==1){
+   for(j=0;j<(93-33-8)/14;j++)
+    if((ym-33-8)/14==j){
+     opt=j;
+     break;
+    }
+   dropmenu(menu,322,33,485,93,opt);
+   switch(opt){
+    case 0:notice();break;
+    case 1:notice();break;
+    case 2:notice();break;
+   }
+  }else if(buttonm==1){
+   break;
+  }
+ }while(close);
+ clrwin(1);
+ return 1;
 }
 
 int doctor(){
@@ -642,7 +672,7 @@ int doctor(){
     }
    dropmenu(menu,35,33,150,118,opt);
    switch(opt){
-    case 0:adddoc();break;
+    case 0:adddoc1();break;
     case 1:updatepat();break;
     case 2:deletedoc();break;
     case 3:searchdoc();break;
@@ -658,24 +688,28 @@ int doctor(){
  clrwin(1);
  return 1;
 }
-
+void adddoc1(){
+    notice();
+}
 void adddoc(){
  int opt=-1,j;
  char menu[4][30]={"Add Marksheet by FN","Add Marksheet by LN","Add Marksheet by ID","Add Marksheet by Grade"};
- dropmenu(menu,151,69,335,140,opt);
+ dropmenu(menu,40,40,241,113,opt);
  do{
   getmousepos(&buttonm,&xm,&ym);
-  if(xm>=151+10&&xm<=237-10&&ym>=69+8&&ym<=112-8&&buttonm==1){
-   for(j=0;j<(112-69-8)/14;j++)
-    if((ym-69-8)/14==j){
+  if(xm>=40+10&&xm<=241-10&&ym>=40+8&&ym<=113-8&&buttonm==1){
+   for(j=0;j<(113-40-8)/14;j++)
+    if((ym-40-8)/14==j){
      opt=j;
      break;
     }
-   dropmenu(menu,151,69,237,112,opt);
+   dropmenu(menu,40,40,241,113,opt);
    delay(200);
    switch(opt){
     case 0: notice();break;
     case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
    }
   }else if(buttonm==1){
    break;
@@ -683,23 +717,103 @@ void adddoc(){
  }while(close);
  clrwin(1);
    }
+void viewdoc(){
+  int opt=-1,j;
+ char menu[4][30]={"View Marksheet by FN","View Marksheet by LN","View Marksheet by ID","View Marksheet by Grade"};
+ dropmenu(menu,33,55,241,128,opt);
+ do{
+  getmousepos(&buttonm,&xm,&ym);
+  if(xm>=33+10&&xm<=241-10&&ym>=55+8&&ym<=128-8&&buttonm==1){
+   for(j=0;j<(128-55-8)/14;j++)
+    if((ym-55-8)/14==j){
+     opt=j;
+     break;
+    }
+   dropmenu(menu,33,55,241,128,opt);
+   delay(200);
+   switch(opt){
+    case 0: notice();break;
+    case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
+   }
+  }else if(buttonm==1){
+   break;
+  }
+ }while(close);
+ clrwin(1);
+}
+void updatedoc(){
+ int opt=-1,j;
+ char menu[4][30]={"Update Marksheet by FN","Update Marksheet by LN","Update Marksheet by ID","Update Marksheet by Grade"};
+ dropmenu(menu,18,69,241,141,opt);
+ do{
+  getmousepos(&buttonm,&xm,&ym);
+  if(xm>=18+10&&xm<=241-10&&ym>=69+8&&ym<=141-8&&buttonm==1){
+   for(j=0;j<(141-69-8)/14;j++)
+    if((ym-69-8)/14==j){
+     opt=j;
+     break;
+    }
+   dropmenu(menu,18,68,241,140,opt);
+   delay(200);
+   switch(opt){
+    case 0: notice();break;
+    case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
+   }
+  }else if(buttonm==1){
+   break;
+  }
+ }while(close);
+ clrwin(1);
+}
+void deletedoc1(){
+ int opt=-1,j;
+ char menu[4][30]={"Delete Marksheet by FN","Delete Marksheet by LN","Delete Marksheet by ID","Delete Marksheet by Grade"};
+ dropmenu(menu,18,82,241,154,opt);
+ do{
+  getmousepos(&buttonm,&xm,&ym);
+  if(xm>=18+10&&xm<=241-10&&ym>=82+8&&ym<=154-8&&buttonm==1){
+   for(j=0;j<(154-82-8)/14;j++)
+    if((ym-82-8)/14==j){
+     opt=j;
+     break;
+    }
+   dropmenu(menu,18,82,241,154,opt);
+   delay(200);
+   switch(opt){
+    case 0: notice();break;
+    case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
+   }
+  }else if(buttonm==1){
+   break;
+  }
+ }while(close);
+ clrwin(1);
+}
 void deletedoc(){
  int opt=-1,j;
  char menu[4][30]={"Delete by First Name","Delete by Last Name","Delete by ID","Delete by Grade"};
  dropmenu(menu,151,69,335,140,opt);
  do{
   getmousepos(&buttonm,&xm,&ym);
-  if(xm>=151+10&&xm<=237-10&&ym>=69+8&&ym<=112-8&&buttonm==1){
-   for(j=0;j<(112-69-8)/14;j++)
+  if(xm>=151+10&&xm<=335-10&&ym>=69+8&&ym<=140-8&&buttonm==1){
+   for(j=0;j<(140-69-8)/14;j++)
     if((ym-69-8)/14==j){
      opt=j;
      break;
     }
-   dropmenu(menu,151,69,237,112,opt);
+   dropmenu(menu,151,69,335,140,opt);
    delay(200);
    switch(opt){
     case 0: notice();break;
     case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
    }
   }else if(buttonm==1){
    break;
@@ -713,13 +827,13 @@ void searchdoc(){
  dropmenu(menu,151,83,335,154,opt);
  do{
   getmousepos(&buttonm,&xm,&ym);
-  if(xm>=151+10&&xm<=285-10&&ym>=83+8&&ym<=154-8&&buttonm==1){
+  if(xm>=151+10&&xm<=335-10&&ym>=83+8&&ym<=154-8&&buttonm==1){
    for(j=0;j<(154-83-8)/14;j++)
     if((ym-83-8)/14==j){
      opt=j;
      break;
     }
-   dropmenu(menu,151,83,285,154,opt);
+   dropmenu(menu,151,83,335,154,opt);
    delay(200);
    switch(opt){
     case 0: notice();break;
@@ -792,17 +906,19 @@ void updatepat(){
  dropmenu(menu,151,55,335,126,opt);
  do{
   getmousepos(&buttonm,&xm,&ym);
-  if(xm>=211+10&&xm<=273-10&&ym>=69+8&&ym<=126-8&&buttonm==1){
-   for(j=0;j<(126-69-8)/14;j++)
-    if((ym-69-8)/14==j){
+  if(xm>=151+10&&xm<=335-10&&ym>=55+8&&ym<=126-8&&buttonm==1){
+   for(j=0;j<(126-55-8)/14;j++)
+    if((ym-55-8)/14==j){
      opt=j;
      break;
     }
-   dropmenu(menu,211,69,273,126,opt);
+   dropmenu(menu,151,55,335,126,opt);
    delay(200);
    switch(opt){
     case 0: notice();break;
     case 1: notice();break;
+    case 2: notice();break;
+    case 3: notice();break;
    }
   }else if(buttonm==1){
    break;

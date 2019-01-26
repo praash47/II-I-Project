@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<iostream.h>
 #include<bios.h>
 #include<conio.h>
 #include<ctype.h>
@@ -25,7 +26,7 @@ int initmouse();
 void setmousepos(int &xpos,int &ypos);
 void hidemouse();
 int menu(int);
-int doctor();
+int students();
 void adddoc();
 void adddoc1();
 void viewdoc();
@@ -98,7 +99,7 @@ void main(){
    menu(menu1);
    switch(menu1){
     case 0:program();break;
-    case 1:doctor();break;
+    case 1:students();break;
     case 2:patient();break;
     case 3:rooms();break;
     case 4:sth();break;
@@ -240,14 +241,14 @@ void userl(){
 void setusrl(){
  char head[30]="SET USER LOGIN";
  char usr[30]="",pwd[30]="",code[30]="";
- int a=midx/2+15+textwidth("Program Code : ");
+ int a=midx/2+15+textwidth("Program Key : ");
  set=1;
  clrwin(2);
  drawwindow(head, midx/2, midy/2, (getmaxx()*3)/4, (getmaxy()*3)/4,1 );
  button("Set",midx+30,midy*3/2-22,midx+90,midy*3/2-8,7);
  button("Cancel",midx-90,midy*3/2-22,midx-30,midy*3/2-8,7);
  setcolor(15);moveto(midx/2+15,midy-26);
- outtext("Program Code :");inputbox(a,midy-26,15,15);
+ outtext("Program Key  :");inputbox(a,midy-26,15,15);
  setcolor(15);moveto(midx/2+15,midy-7);
  outtext("Username     :");inputbox(a,midy-7,15,15);
  setcolor(15);moveto(midx/2+15,midy+12);
@@ -656,7 +657,7 @@ int about(){
  return 1;
 }
 
-int doctor(){
+int students(){
  char menu[5][30]={"Enroll","Update    >","Delete    >","Search    >","Display All"};
  int opt=-1,j;
  close=1;
@@ -689,7 +690,91 @@ int doctor(){
  return 1;
 }
 void adddoc1(){
-    notice();
+    char head[30]="ENROLL STUDENT";
+ char usr[30]="",pwd[30]="",code[30]="";
+ int a=midx/2+15+textwidth("Student Roll    :");
+ set=1;
+ clrwin(2);
+ drawwindow(head, midx/2, midy/2, (getmaxx()*3)/4, (getmaxy()*3)/4,1 );
+ button("Set",midx+30,midy*3/2-22,midx+90,midy*3/2-8,7);
+ button("Cancel",midx-90,midy*3/2-22,midx-30,midy*3/2-8,7);
+ setcolor(15);moveto(midx/2+15,midy-26);
+ outtext("Student Roll    :");inputbox(a,midy-26,15,15);
+ setcolor(15);moveto(midx/2+15,midy-7);
+ outtext("Student Name    :");inputbox(a,midy-7,15,15);
+ setcolor(15);moveto(midx/2+15,midy+12);
+ outtext("Student Address :");inputbox(a,midy+12,15,15);
+ do{
+  getmousepos(&buttonm,&xm,&ym);
+  if(buttonm==1){
+   if(xm>=a-2&&xm<=a+15*8+1&&ym>=midy-26-2&&ym<=midy-26+8){
+    set=1;
+   }
+   if(xm>=a-2&&xm<=a+15*8+1&&ym>=midy-7-2&&ym<=midy-7+8){
+    set=2;
+   }
+   if(xm>=a-2&&xm<=a+15*8+1&&ym>=midy+12-2&&ym<=midy+12+8){
+    set=3;
+   }
+   if(xm>=midx-90&&ym>=midy*3/2-22&&xm<=midx-30&&ym<=midy*3/2-8){
+    button("Cancel",midx-90,midy*3/2-22,midx-30,midy*3/2-8,3);
+    delay(100);close=0;set=0;
+   }
+
+   if(xm>=midx+30&&ym>=midy*3/2-22&&xm<=midx+90&&ym<=midy*3/2-8&&strlen(code)>0&&strlen(usr)>0&&strlen(pwd)>0){
+    button("Set",midx+30,midy*3/2-22,midx+90,midy*3/2-8,3);
+    delay(100);notice();close=0;set=0;
+   }
+  }
+  if(set==4)set=1;
+  if(set==1)
+   input(a,midy-26,code,15 ,0,15,INT);
+  if(set==2)
+   input(a,midy-7,usr,15 ,0,15,TEXT);
+  if(set==3)
+   input(a,midy+12,pwd,15 ,0,15,PASSWORD);
+  }while(close);
+}
+void changeusr2(){
+ char head[30]="CHANGE USER LOGIN";
+ char cusr[30]="",cpwd[30]="";
+ int a=midx/2+15+textwidth("Current Username : ");
+ set=1;
+ //display before input data
+ clrwin(2);
+ drawwindow(head, midx/2, midy/2, (getmaxx()*3)/4, (getmaxy()*3)/4,1 );
+ button("OK",midx+30,midy*3/2-22,midx+90,midy*3/2-8,7);
+ button("Cancel",midx-90,midy*3/2-22,midx-30,midy*3/2-8,7);
+ setcolor(15);moveto(midx/2+15,midy-26);
+ outtext("Current Username :");inputbox(a,midy-26,15,15);
+ setcolor(15);moveto(midx/2+15,midy+12);
+ outtext("Current Password :");inputbox(a,midy+12,15,15);
+ //start input data
+ do{
+  getmousepos(&buttonm,&xm,&ym);
+  if(buttonm==1){
+   if(xm>=a-2&&xm<=a+15*8+1&&ym>=midy-26-2&&ym<=midy-26+8){
+    set=1;
+   }
+   if(xm>=a-2&&xm<=a+15*8+1&&ym>=midy+12-2&&ym<=midy+12+8){
+    set=2;
+   }
+   if(xm>=midx-90&&ym>=midy*3/2-22&&xm<=midx-30&&ym<=midy*3/2-8){
+    button("Cancel",midx-90,midy*3/2-22,midx-30,midy*3/2-8,3);
+    delay(100);close=0;set=0;
+   }
+
+   if(xm>=midx+30&&ym>=midy*3/2-22&&xm<=midx+90&&ym<=midy*3/2-8&&strlen(cusr)>0&&strlen(cpwd)>0){
+    button("OK",midx+30,midy*3/2-22,midx+90,midy*3/2-8,3);
+    delay(100);notice();close=0;set=0;
+   }
+  }
+  if(set==3)set=1;
+  if(set==1)
+   input(a,midy-26,cusr,15 ,0,15,TEXT);
+  if(set==2)
+   input(a,midy+12,cpwd,15 ,0,15,PASSWORD);
+  }while(close);
 }
 void adddoc(){
  int opt=-1,j;

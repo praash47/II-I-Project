@@ -1,5 +1,6 @@
 #include<iostream>
 #include<windows.h>
+using namespace std;
 
 #define USERS_MENU_ADD 1
 #define USERS_MENU_VIEW 2
@@ -34,10 +35,22 @@
 #define ABOUT_MENU_PROJECT 26
 #define ABOUT_MENU_GUIDE 27
 
+#define SUBMIT_STUDENT_DETAILS 28
+#define CANCEL 29
+
 
 LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 void AddMenus(HWND hWnd);
+void clearscr(HWND hWnd);
 HMENU hMenu;
+HWND temp_fn,temp_ln,temp_dob,temp_gen,temp_add,temp_phone,temp_prog,temp_start;
+
+void enrollStudent(HWND);
+
+void about_group(HWND);
+void about_project(HWND);
+
+wchar_t firstName[20],lastName[20],dob[10],gen[10],add[50],phone[10],prog[20],start[10];
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow)
 {
@@ -73,7 +86,8 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         switch(wp)
         {
         case USERS_MENU_ADD:
-            DestroyWindow(hWnd);
+            clearscr(hWnd);
+            enrollStudent(hWnd);
             break;
         case USERS_MENU_VIEW:
             DestroyWindow(hWnd);
@@ -89,7 +103,8 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             break;
 
         case STUDENTS_MENU_ENROLL:
-            DestroyWindow(hWnd);
+            clearscr(hWnd);
+            enrollStudent(hWnd);
             break;
         case STUDENTS_MENU_UPDATE:
             DestroyWindow(hWnd);
@@ -120,7 +135,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         case FEES_MENU_ADD:
             DestroyWindow(hWnd);
             break;
-        case FEES_MENU_DISPLAY:
+        case FEES_MENU_CHECK:
             DestroyWindow(hWnd);
             break;
         case FEES_MENU_BILL:
@@ -151,13 +166,50 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
 
 
         case ABOUT_MENU_GROUP:
-            DestroyWindow(hWnd);
+            clearscr(hWnd);
+            about_group(hWnd);
             break;
         case ABOUT_MENU_PROJECT:
-            DestroyWindow(hWnd);
+            clearscr(hWnd);
+            about_project(hWnd);
             break;
         case ABOUT_MENU_GUIDE:
             DestroyWindow(hWnd);
+            break;
+
+        case SUBMIT_STUDENT_DETAILS:
+            GetWindowTextW(temp_fn,firstName,20);
+            GetWindowTextW(temp_ln,lastName,20);
+            GetWindowTextW(temp_dob,dob,10);
+            GetWindowTextW(temp_gen,gen,10);
+            GetWindowTextW(temp_add,add,50);
+            GetWindowTextW(temp_phone,phone,10);
+            GetWindowTextW(temp_prog,prog,20);
+            GetWindowTextW(temp_start,start,10);
+            clearscr(hWnd);
+            CreateWindowW(L"Static",L"Enroll Student - Submitted",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Submitted Details",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,125,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,125,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"DOB",WS_VISIBLE | WS_CHILD ,5,165,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,165,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Gender",WS_VISIBLE | WS_CHILD ,5,205,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,205,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Address",WS_VISIBLE | WS_CHILD ,5,245,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,245,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Phone",WS_VISIBLE | WS_CHILD ,5,285,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,285,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Program",WS_VISIBLE | WS_CHILD ,5,325,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,325,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"Start Year",WS_VISIBLE | WS_CHILD ,5,365,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,365,100,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",firstName,WS_VISIBLE | WS_CHILD ,125,85,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",lastName,WS_VISIBLE | WS_CHILD,125,125,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",dob,WS_VISIBLE | WS_CHILD,125,165,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",gen,WS_VISIBLE | WS_CHILD,125,205,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",add,WS_VISIBLE | WS_CHILD,125,245,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",phone,WS_VISIBLE | WS_CHILD,125,285,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",prog,WS_VISIBLE | WS_CHILD,125,325,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",start,WS_VISIBLE | WS_CHILD,125,365,150,20,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"                                                           ",WS_VISIBLE | WS_CHILD,5,400,400,50,hWnd,NULL,NULL,NULL);
+            CreateWindowW(L"Static",L"                                                           ",WS_VISIBLE | WS_CHILD,125,410,400,50,hWnd,NULL,NULL,NULL);
+            break;
+        case CANCEL:
+            clearscr(hWnd);
             break;
         }
     case WM_CREATE:
@@ -169,6 +221,45 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
     default:
         return DefWindowProcW(hWnd,msg,wp,lp);
     }
+}
+
+void enrollStudent(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"Enroll Student",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,100,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Students",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,125,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,125,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"DOB",WS_VISIBLE | WS_CHILD ,5,165,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,165,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Gender",WS_VISIBLE | WS_CHILD ,5,205,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,205,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Address",WS_VISIBLE | WS_CHILD ,5,245,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,245,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Phone",WS_VISIBLE | WS_CHILD ,5,285,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,285,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Program",WS_VISIBLE | WS_CHILD ,5,325,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,325,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Start Year",WS_VISIBLE | WS_CHILD ,5,365,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,365,100,50,hWnd,NULL,NULL,NULL);
+    temp_fn = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    temp_ln = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,125,150,20,hWnd,NULL,NULL,NULL);
+    temp_dob = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,165,150,20,hWnd,NULL,NULL,NULL);
+    temp_gen = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,205,150,20,hWnd,NULL,NULL,NULL);
+    temp_add = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,245,150,20,hWnd,NULL,NULL,NULL);
+    temp_phone = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,285,150,20,hWnd,NULL,NULL,NULL);
+    temp_prog = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,325,150,20,hWnd,NULL,NULL,NULL);
+    temp_start = CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,365,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,400,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,400,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
+void about_group(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"About Group",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,85,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"National College of Engineering, BCT 2074",WS_VISIBLE | WS_CHILD ,5,40,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"- Aashish Tamrakar (101)",WS_VISIBLE | WS_CHILD ,5,60,500,250,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"- Bigyat Bhattarai (106)",WS_VISIBLE | WS_CHILD ,5,80,500,250,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"- Niroj Bajracharya (123)",WS_VISIBLE | WS_CHILD ,5,100,500,250,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"- Ram Shrestha (128)",WS_VISIBLE | WS_CHILD ,5,120,500,250,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"- Sudip Gyawali (136)",WS_VISIBLE | WS_CHILD ,5,140,500,250,hWnd,NULL,NULL,NULL);
+}
+
+void about_project(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"About Project",WS_VISIBLE | WS_CHILD | WS_BORDER,5,5,100,25,hWnd,NULL,NULL,NULL);
 }
 
 void AddMenus(HWND hWnd)
@@ -221,4 +312,9 @@ void AddMenus(HWND hWnd)
         AppendMenu(hAboutMenu,MF_STRING,ABOUT_MENU_GUIDE,"Brief Usage Guide");
 
     SetMenu(hWnd,hMenu);
+}
+
+void clearscr(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"",WS_VISIBLE| WS_CHILD,0,0,500,500,hWnd,NULL,NULL,NULL);
 }

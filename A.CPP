@@ -1,6 +1,4 @@
-#include<iostream>
 #include<windows.h>
-using namespace std;
 
 #define USERS_MENU_ADD 1
 #define USERS_MENU_VIEW 2
@@ -10,8 +8,20 @@ using namespace std;
 
 #define STUDENTS_MENU_ENROLL 6
 #define STUDENTS_MENU_UPDATE 7
+    #define STUDENTS_MENU_UPDATE_ID 30
+    #define STUDENTS_MENU_UPDATE_FN 31
+    #define STUDENTS_MENU_UPDATE_LN 32
+    #define STUDENTS_MENU_UPDATE_GRADE 33
 #define STUDENTS_MENU_SEARCH 8
+    #define STUDENTS_MENU_SEARCH_ID 34
+    #define STUDENTS_MENU_SEARCH_FN 35
+    #define STUDENTS_MENU_SEARCH_LN 36
+    #define STUDENTS_MENU_SEARCH_GRADE 37
 #define STUDENTS_MENU_DELETE 9
+    #define STUDENTS_MENU_DELETE_ID 38
+    #define STUDENTS_MENU_DELETE_FN 39
+    #define STUDENTS_MENU_DELETE_LN 40
+    #define STUDENTS_MENU_DELETE_GRADE 41
 #define STUDENTS_MENU_DISPLAY 10
 
 #define ATTENDANCE_MENU_PERFORM 11
@@ -45,12 +55,32 @@ void clearscr(HWND hWnd);
 HMENU hMenu;
 HWND temp_fn,temp_ln,temp_dob,temp_gen,temp_add,temp_phone,temp_prog,temp_start;
 
+void addUser(HWND);
+void updateUser(HWND);
+void viewUser(HWND);
+void deleteUser(HWND);
+void logoutUser(HWND);
+
 void enrollStudent(HWND);
+void updateStudentID(HWND);
+void updateStudentFN(HWND);
+void updateStudentLN(HWND);
+void updateStudentGrade(HWND);
+void searchStudentID(HWND);
+void searchStudentFN(HWND);
+void searchStudentLN(HWND);
+void searchStudentGrade(HWND);
+void deleteStudentID(HWND);
+void deleteStudentFN(HWND);
+void deleteStudentLN(HWND);
+void deleteStudentGrade(HWND);
+void viewStudent(HWND);
 
 void about_group(HWND);
 void about_project(HWND);
 
 wchar_t firstName[20],lastName[20],dob[10],gen[10],add[50],phone[10],prog[20],start[10];
+int f=0;
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR args, int ncmdshow)
 {
@@ -86,17 +116,16 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         switch(wp)
         {
         case USERS_MENU_ADD:
-            clearscr(hWnd);
-            enrollStudent(hWnd);
+            addUser(hWnd);
             break;
         case USERS_MENU_VIEW:
-            DestroyWindow(hWnd);
+            viewUser(hWnd);
             break;
         case USERS_MENU_UPDATE:
-            DestroyWindow(hWnd);
+            updateUser(hWnd);
             break;
         case USERS_MENU_DELETE:
-            DestroyWindow(hWnd);
+            deleteUser(hWnd);
             break;
         case USERS_MENU_LOGOUT:
             DestroyWindow(hWnd);
@@ -106,17 +135,48 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             clearscr(hWnd);
             enrollStudent(hWnd);
             break;
-        case STUDENTS_MENU_UPDATE:
-            DestroyWindow(hWnd);
+
+        case STUDENTS_MENU_UPDATE_ID:
+            updateStudentID(hWnd);
             break;
-        case STUDENTS_MENU_SEARCH:
-            DestroyWindow(hWnd);
+        case STUDENTS_MENU_UPDATE_FN:
+            updateStudentFN(hWnd);
             break;
-        case STUDENTS_MENU_DELETE:
-            DestroyWindow(hWnd);
+        case STUDENTS_MENU_UPDATE_LN:
+            updateStudentLN(hWnd);
             break;
+        case STUDENTS_MENU_UPDATE_GRADE:
+            updateStudentGrade(hWnd);
+            break;
+
+        case STUDENTS_MENU_SEARCH_ID:
+            searchStudentID(hWnd);
+            break;
+        case STUDENTS_MENU_SEARCH_FN:
+            searchStudentFN(hWnd);
+            break;
+        case STUDENTS_MENU_SEARCH_LN:
+            searchStudentLN(hWnd);
+            break;
+        case STUDENTS_MENU_SEARCH_GRADE:
+            searchStudentGrade(hWnd);
+            break;
+
+        case STUDENTS_MENU_DELETE_ID:
+            deleteStudentID(hWnd);
+            break;
+        case STUDENTS_MENU_DELETE_FN:
+            deleteStudentFN(hWnd);
+            break;
+        case STUDENTS_MENU_DELETE_LN:
+            deleteStudentLN(hWnd);
+            break;
+        case STUDENTS_MENU_DELETE_GRADE:
+            deleteStudentGrade(hWnd);
+            break;
+
         case STUDENTS_MENU_DISPLAY:
-            DestroyWindow(hWnd);
+            viewStudent(hWnd);
             break;
 
         case ATTENDANCE_MENU_PERFORM:
@@ -222,6 +282,44 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         return DefWindowProcW(hWnd,msg,wp,lp);
     }
 }
+void addUser(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add User",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,75,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Users to Add",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Username",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Password",WS_VISIBLE | WS_CHILD ,5,125,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,125,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,125,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,160,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,160,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
+void updateUser(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update User",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,100,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Users to Update",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Username",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
+void viewUser(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Users",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,75,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Users List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+}
+
+void deleteUser(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete User",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,100,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Users to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Username",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
 
 void enrollStudent(HWND hWnd)
 {
@@ -246,6 +344,122 @@ void enrollStudent(HWND hWnd)
     CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,400,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,400,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
 }
 
+void updateStudentID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Student By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateStudentFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Student By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateStudentLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Student By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateStudentGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Student By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void searchStudentID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Search Student By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Search",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void searchStudentFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Search Student By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Search",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void searchStudentLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Search Student By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Search",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void searchStudentGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Search Student By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Search",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteStudentID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteStudentFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteStudentLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteStudentGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
+void viewStudent(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Students",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,110,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Students List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+}
+
 void about_group(HWND hWnd)
 {
     CreateWindowW(L"Static",L"About Group",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,85,25,hWnd,NULL,NULL,NULL);
@@ -267,6 +481,10 @@ void AddMenus(HWND hWnd)
     hMenu = CreateMenu();
     HMENU hUsersMenu = CreateMenu();
     HMENU hStudentsMenu = CreateMenu();
+        HMENU hStudentsMenu1 = CreateMenu();
+        HMENU hStudentsMenu2 = CreateMenu();
+        HMENU hStudentsMenu3 = CreateMenu();
+        HMENU hStudentsMenu4 = CreateMenu();
     HMENU hAttendanceMenu = CreateMenu();
     HMENU hFeesMenu = CreateMenu();
     HMENU hMarksheetMenu = CreateMenu();
@@ -281,9 +499,21 @@ void AddMenus(HWND hWnd)
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hStudentsMenu,"Students");
         AppendMenu(hStudentsMenu,MF_STRING,STUDENTS_MENU_ENROLL,"Enroll");
-        AppendMenu(hStudentsMenu,MF_STRING,STUDENTS_MENU_UPDATE,"Update");
-        AppendMenu(hStudentsMenu,MF_STRING,STUDENTS_MENU_SEARCH,"Search");
-        AppendMenu(hStudentsMenu,MF_STRING,STUDENTS_MENU_DELETE,"Delete");
+        AppendMenu(hStudentsMenu,MF_POPUP,(UINT_PTR)hStudentsMenu1,"Update");
+            AppendMenu(hStudentsMenu1,MF_STRING,STUDENTS_MENU_UPDATE_ID,"Update by ID");
+            AppendMenu(hStudentsMenu1,MF_STRING,STUDENTS_MENU_UPDATE_FN,"Update by First Name");
+            AppendMenu(hStudentsMenu1,MF_STRING,STUDENTS_MENU_UPDATE_LN,"Update by Last Name");
+            AppendMenu(hStudentsMenu1,MF_STRING,STUDENTS_MENU_UPDATE_GRADE,"Update by Grade");
+        AppendMenu(hStudentsMenu,MF_POPUP,(UINT_PTR)hStudentsMenu2,"Search");
+            AppendMenu(hStudentsMenu2,MF_STRING,STUDENTS_MENU_SEARCH_ID,"Search by ID");
+            AppendMenu(hStudentsMenu2,MF_STRING,STUDENTS_MENU_SEARCH_FN,"Search by First Name");
+            AppendMenu(hStudentsMenu2,MF_STRING,STUDENTS_MENU_SEARCH_LN,"Search by Last Name");
+            AppendMenu(hStudentsMenu2,MF_STRING,STUDENTS_MENU_SEARCH_GRADE,"Search by Grade");
+        AppendMenu(hStudentsMenu,MF_POPUP,(UINT_PTR)hStudentsMenu3,"Delete");
+            AppendMenu(hStudentsMenu3,MF_STRING,STUDENTS_MENU_DELETE_ID,"Delete by ID");
+            AppendMenu(hStudentsMenu3,MF_STRING,STUDENTS_MENU_DELETE_FN,"Delete by First Name");
+            AppendMenu(hStudentsMenu3,MF_STRING,STUDENTS_MENU_DELETE_LN,"Delete by Last Name");
+            AppendMenu(hStudentsMenu3,MF_STRING,STUDENTS_MENU_DELETE_GRADE,"Delete by Grade");
         AppendMenu(hStudentsMenu,MF_STRING,STUDENTS_MENU_DISPLAY,"Display All");
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hAttendanceMenu,"Attendance");
@@ -312,6 +542,11 @@ void AddMenus(HWND hWnd)
         AppendMenu(hAboutMenu,MF_STRING,ABOUT_MENU_GUIDE,"Brief Usage Guide");
 
     SetMenu(hWnd,hMenu);
+    if(f<1)
+    {
+        CreateWindowW(L"Static",L"CHOOSE FROM THE WINDOW ABOVE TO PERFORM ACTIONS.",WS_VISIBLE| WS_CHILD,200,150,250,80,hWnd,NULL,NULL,NULL);
+    }
+    f++;
 }
 
 void clearscr(HWND hWnd)

@@ -26,19 +26,43 @@
 
 #define ATTENDANCE_MENU_PERFORM 11
 #define ATTENDANCE_MENU_VIEW 12
+    #define ATTENDANCE_MENU_VIEW_DATE 42
+    #define ATTENDANCE_MENU_VIEW_GRADE 43
 #define ATTENDANCE_MENU_DELETE 13
+    #define ATTENDANCE_MENU_DELETE_DATE 44
+    #define ATTENDANCE_MENU_DELETE_GRADE 45
 #define ATTENDANCE_MENU_DISPLAY 14
 
 #define FEES_MENU_ADD 15
 #define FEES_MENU_CHECK 16
+    #define FEES_MENU_CHECK_ID 46
+    #define FEES_MENU_CHECK_FN 47
+    #define FEES_MENU_CHECK_LN 48
+    #define FEES_MENU_CHECK_GRADE 49
 #define FEES_MENU_BILL 17
 #define FEES_MENU_UNCLEARED 18
 #define FEES_MENU_DISPLAY 19
 
 #define MARKSHEET_MENU_ADD 20
+    #define MARKSHEET_MENU_ADD_ID 50
+    #define MARKSHEET_MENU_ADD_FN 51
+    #define MARKSHEET_MENU_ADD_LN 52
+    #define MARKSHEET_MENU_ADD_GRADE 53
 #define MARKSHEET_MENU_VIEW 21
+    #define MARKSHEET_MENU_VIEW_ID 54
+    #define MARKSHEET_MENU_VIEW_FN 55
+    #define MARKSHEET_MENU_VIEW_LN 56
+    #define MARKSHEET_MENU_VIEW_GRADE 57
 #define MARKSHEET_MENU_UPDATE 22
+    #define MARKSHEET_MENU_UPDATE_ID 58
+    #define MARKSHEET_MENU_UPDATE_FN 59
+    #define MARKSHEET_MENU_UPDATE_LN 60
+    #define MARKSHEET_MENU_UPDATE_GRADE 61
 #define MARKSHEET_MENU_DELETE 23
+    #define MARKSHEET_MENU_DELETE_ID 62
+    #define MARKSHEET_MENU_DELETE_FN 63
+    #define MARKSHEET_MENU_DELETE_LN 64
+    #define MARKSHEET_MENU_DELETE_GRADE 65
 #define MARKSHEET_MENU_CALCULATE 24
 
 #define ABOUT_MENU_GROUP 25
@@ -75,6 +99,33 @@ void deleteStudentFN(HWND);
 void deleteStudentLN(HWND);
 void deleteStudentGrade(HWND);
 void viewStudent(HWND);
+
+void attendanceViewDate(HWND);
+void attendanceViewGrade(HWND);
+void attendanceDeleteDate(HWND);
+void attendanceDeleteGrade(HWND);
+
+void checkID(HWND);
+void checkFN(HWND);
+void checkLN(HWND);
+void checkGrade(HWND);
+
+void addMarksheetID(HWND);
+void addMarksheetFN(HWND);
+void addMarksheetLN(HWND);
+void addMarksheetGrade(HWND);
+void viewMarksheetID(HWND);
+void viewMarksheetFN(HWND);
+void viewMarksheetLN(HWND);
+void viewMarksheetGrade(HWND);
+void updateMarksheetID(HWND);
+void updateMarksheetFN(HWND);
+void updateMarksheetLN(HWND);
+void updateMarksheetGrade(HWND);
+void deleteMarksheetID(HWND);
+void deleteMarksheetFN(HWND);
+void deleteMarksheetLN(HWND);
+void deleteMarksheetGrade(HWND);
 
 void about_group(HWND);
 void about_project(HWND);
@@ -182,12 +233,21 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         case ATTENDANCE_MENU_PERFORM:
             DestroyWindow(hWnd);
             break;
-        case ATTENDANCE_MENU_VIEW:
-            DestroyWindow(hWnd);
+
+        case ATTENDANCE_MENU_VIEW_DATE:
+            attendanceViewDate(hWnd);
             break;
-        case ATTENDANCE_MENU_DELETE:
-            DestroyWindow(hWnd);
+        case ATTENDANCE_MENU_VIEW_GRADE:
+            attendanceViewGrade(hWnd);
             break;
+
+        case ATTENDANCE_MENU_DELETE_DATE:
+            attendanceDeleteDate(hWnd);
+            break;
+        case ATTENDANCE_MENU_DELETE_GRADE:
+            attendanceDeleteGrade(hWnd);
+            break;
+
         case ATTENDANCE_MENU_DISPLAY:
             DestroyWindow(hWnd);
             break;
@@ -195,9 +255,20 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
         case FEES_MENU_ADD:
             DestroyWindow(hWnd);
             break;
-        case FEES_MENU_CHECK:
-            DestroyWindow(hWnd);
+
+        case FEES_MENU_CHECK_ID:
+            checkID(hWnd);
             break;
+        case FEES_MENU_CHECK_FN:
+            checkFN(hWnd);
+            break;
+        case FEES_MENU_CHECK_LN:
+            checkLN(hWnd);
+            break;
+        case FEES_MENU_CHECK_GRADE:
+            checkGrade(hWnd);
+            break;
+
         case FEES_MENU_BILL:
             DestroyWindow(hWnd);
             break;
@@ -208,22 +279,61 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             DestroyWindow(hWnd);
             break;
 
-        case MARKSHEET_MENU_ADD:
-            DestroyWindow(hWnd);
+        case MARKSHEET_MENU_ADD_ID:
+            addMarksheetID(hWnd);
             break;
-        case MARKSHEET_MENU_VIEW:
-            DestroyWindow(hWnd);
+        case MARKSHEET_MENU_ADD_FN:
+            addMarksheetFN(hWnd);
             break;
-        case MARKSHEET_MENU_UPDATE:
-            DestroyWindow(hWnd);
+        case MARKSHEET_MENU_ADD_LN:
+            addMarksheetLN(hWnd);
             break;
-        case MARKSHEET_MENU_DELETE:
-            DestroyWindow(hWnd);
+        case MARKSHEET_MENU_ADD_GRADE:
+            addMarksheetGrade(hWnd);
             break;
+
+        case MARKSHEET_MENU_VIEW_ID:
+            viewMarksheetID(hWnd);
+            break;
+        case MARKSHEET_MENU_VIEW_FN:
+            viewMarksheetFN(hWnd);
+            break;
+        case MARKSHEET_MENU_VIEW_LN:
+            viewMarksheetLN(hWnd);
+            break;
+        case MARKSHEET_MENU_VIEW_GRADE:
+            viewMarksheetGrade(hWnd);
+            break;
+
+        case MARKSHEET_MENU_UPDATE_ID:
+            updateMarksheetID(hWnd);
+            break;
+        case MARKSHEET_MENU_UPDATE_FN:
+            updateMarksheetFN(hWnd);
+            break;
+        case MARKSHEET_MENU_UPDATE_LN:
+            updateMarksheetLN(hWnd);
+            break;
+        case MARKSHEET_MENU_UPDATE_GRADE:
+            updateMarksheetGrade(hWnd);
+            break;
+
+        case MARKSHEET_MENU_DELETE_ID:
+            deleteMarksheetID(hWnd);
+            break;
+        case MARKSHEET_MENU_DELETE_FN:
+            deleteMarksheetFN(hWnd);
+            break;
+        case MARKSHEET_MENU_DELETE_LN:
+            deleteMarksheetLN(hWnd);
+            break;
+        case MARKSHEET_MENU_DELETE_GRADE:
+            deleteMarksheetGrade(hWnd);
+            break;
+
         case MARKSHEET_MENU_CALCULATE:
             DestroyWindow(hWnd);
             break;
-
 
         case ABOUT_MENU_GROUP:
             clearscr(hWnd);
@@ -460,6 +570,226 @@ void viewStudent(HWND hWnd)
     CreateWindowW(L"Static",L"Students List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
 }
 
+void attendanceViewDate(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Student By Date",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the Date of Attendance to View",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Date",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void attendanceViewGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Student By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the Grade of Attendance to View",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void attendanceDeleteDate(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By Date",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the Date of Attendance to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Date",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+
+}
+void attendanceDeleteGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Student By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the Grade of Attendance to Delete",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+
+}
+
+void checkID(HWND hWnd)
+{
+   clearscr(hWnd);
+    CreateWindowW(L"Static",L"Check Bill By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,125,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Bill to Check",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void checkFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Check Bill By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Bill to Check",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void checkLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Check Bill By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Bill to Check",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void checkGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Check Bill By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Bill to Check",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
+void addMarksheetID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add Marksheet By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Add Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void addMarksheetFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add Marksheet By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Add Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void addMarksheetLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add Marksheet By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Add Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void addMarksheetGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add Marksheet By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Add Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void viewMarksheetID(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"View Marksheet By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to View Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void viewMarksheetFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Marksheet By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,210,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to View Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void viewMarksheetLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Marksheet By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,210,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to View Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void viewMarksheetGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"View Marksheet By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,180,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to View Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateMarksheetID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Marksheet By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,175,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateMarksheetFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Marksheet By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,225,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateMarksheetLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Marksheet By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,225,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void updateMarksheetGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Update Marksheet By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,200,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Update Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteMarksheetID(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Marksheet By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,165,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteMarksheetFN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Marksheet By First Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,225,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"First Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteMarksheetLN(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Marksheet By Last Name",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,225,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Last Name",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void deleteMarksheetGrade(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Delete Marksheet By Grade",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,190,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Student to Delete Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+
 void about_group(HWND hWnd)
 {
     CreateWindowW(L"Static",L"About Group",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,85,25,hWnd,NULL,NULL,NULL);
@@ -486,8 +816,15 @@ void AddMenus(HWND hWnd)
         HMENU hStudentsMenu3 = CreateMenu();
         HMENU hStudentsMenu4 = CreateMenu();
     HMENU hAttendanceMenu = CreateMenu();
+        HMENU hAttendanceMenu1 = CreateMenu();
+        HMENU hAttendanceMenu2 = CreateMenu();
     HMENU hFeesMenu = CreateMenu();
+        HMENU hFeesMenu1 = CreateMenu();
     HMENU hMarksheetMenu = CreateMenu();
+        HMENU hMarksheetMenu1 = CreateMenu();
+        HMENU hMarksheetMenu2 = CreateMenu();
+        HMENU hMarksheetMenu3 = CreateMenu();
+        HMENU hMarksheetMenu4 = CreateMenu();
     HMENU hAboutMenu = CreateMenu();
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hUsersMenu,"Users");
@@ -518,22 +855,46 @@ void AddMenus(HWND hWnd)
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hAttendanceMenu,"Attendance");
         AppendMenu(hAttendanceMenu,MF_STRING,ATTENDANCE_MENU_PERFORM,"Perform Attendance");
-        AppendMenu(hAttendanceMenu,MF_STRING,ATTENDANCE_MENU_VIEW,"View Attendance");
-        AppendMenu(hAttendanceMenu,MF_STRING,ATTENDANCE_MENU_DELETE,"Delete Attendance");
+        AppendMenu(hAttendanceMenu,MF_POPUP,(UINT_PTR)hAttendanceMenu1,"View Attendance");
+            AppendMenu(hAttendanceMenu1,MF_STRING,ATTENDANCE_MENU_VIEW_DATE,"View Attendance by Date");
+            AppendMenu(hAttendanceMenu1,MF_STRING,ATTENDANCE_MENU_VIEW_GRADE,"View Attendance by Grade");
+        AppendMenu(hAttendanceMenu,MF_POPUP,(UINT_PTR)hAttendanceMenu2,"Delete Attendance");
+            AppendMenu(hAttendanceMenu2,MF_STRING,ATTENDANCE_MENU_DELETE_DATE,"Delete Attendance by Date");
+            AppendMenu(hAttendanceMenu2,MF_STRING,ATTENDANCE_MENU_DELETE_GRADE,"Delete Attendance by Grade");
         AppendMenu(hAttendanceMenu,MF_STRING,ATTENDANCE_MENU_DISPLAY,"Display Attendance");
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hFeesMenu,"Fees");
         AppendMenu(hFeesMenu,MF_STRING,FEES_MENU_ADD,"Add Fees");
-        AppendMenu(hFeesMenu,MF_STRING,FEES_MENU_CHECK,"Check Fees");
+        AppendMenu(hFeesMenu,MF_POPUP,(UINT_PTR)hFeesMenu1,"Check Fees");
+            AppendMenu(hFeesMenu1,MF_STRING,FEES_MENU_CHECK_ID,"Check Fees by ID");
+            AppendMenu(hFeesMenu1,MF_STRING,FEES_MENU_CHECK_FN,"Check Fees by First Name");
+            AppendMenu(hFeesMenu1,MF_STRING,FEES_MENU_CHECK_LN,"Check Fees by Last Name");
+            AppendMenu(hFeesMenu1,MF_STRING,FEES_MENU_CHECK_GRADE,"Check Fees by Grade");
         AppendMenu(hFeesMenu,MF_STRING,FEES_MENU_BILL,"Bill Fees");
         AppendMenu(hFeesMenu,MF_STRING,FEES_MENU_UNCLEARED,"Uncleared Fees");
         AppendMenu(hFeesMenu,MF_STRING,FEES_MENU_DISPLAY,"Display Fees");
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hMarksheetMenu,"Marksheet");
-        AppendMenu(hMarksheetMenu,MF_STRING,MARKSHEET_MENU_ADD,"Add Marksheet");
-        AppendMenu(hMarksheetMenu,MF_STRING,MARKSHEET_MENU_VIEW,"View Marksheet");
-        AppendMenu(hMarksheetMenu,MF_STRING,MARKSHEET_MENU_UPDATE,"Update Marksheet");
-        AppendMenu(hMarksheetMenu,MF_STRING,MARKSHEET_MENU_DELETE,"Delete Marksheet");
+        AppendMenu(hMarksheetMenu,MF_POPUP,(UINT_PTR)hMarksheetMenu1,"Add");
+            AppendMenu(hMarksheetMenu1,MF_STRING,MARKSHEET_MENU_ADD_ID,"Add by ID");
+            AppendMenu(hMarksheetMenu1,MF_STRING,MARKSHEET_MENU_ADD_FN,"Add by First Name");
+            AppendMenu(hMarksheetMenu1,MF_STRING,MARKSHEET_MENU_ADD_LN,"Add by Last Name");
+            AppendMenu(hMarksheetMenu1,MF_STRING,MARKSHEET_MENU_ADD_GRADE,"Add by Grade");
+        AppendMenu(hMarksheetMenu,MF_POPUP,(UINT_PTR)hMarksheetMenu2,"View");
+            AppendMenu(hMarksheetMenu2,MF_STRING,MARKSHEET_MENU_VIEW_ID,"View by ID");
+            AppendMenu(hMarksheetMenu2,MF_STRING,MARKSHEET_MENU_VIEW_FN,"View by First Name");
+            AppendMenu(hMarksheetMenu2,MF_STRING,MARKSHEET_MENU_VIEW_LN,"View by Last Name");
+            AppendMenu(hMarksheetMenu2,MF_STRING,MARKSHEET_MENU_VIEW_GRADE,"View by Grade");
+        AppendMenu(hMarksheetMenu,MF_POPUP,(UINT_PTR)hMarksheetMenu3,"Update");
+            AppendMenu(hMarksheetMenu3,MF_STRING,MARKSHEET_MENU_UPDATE_ID,"Update By ID");
+            AppendMenu(hMarksheetMenu3,MF_STRING,MARKSHEET_MENU_UPDATE_FN,"Update By First Name");
+            AppendMenu(hMarksheetMenu3,MF_STRING,MARKSHEET_MENU_UPDATE_LN,"Update By Last Name");
+            AppendMenu(hMarksheetMenu3,MF_STRING,MARKSHEET_MENU_UPDATE_GRADE,"Update By Grade");
+        AppendMenu(hMarksheetMenu,MF_POPUP,(UINT_PTR)hMarksheetMenu4,"Delete");
+            AppendMenu(hMarksheetMenu4,MF_STRING,MARKSHEET_MENU_DELETE_ID,"Delete by ID");
+            AppendMenu(hMarksheetMenu4,MF_STRING,MARKSHEET_MENU_DELETE_FN,"Delete by First Name");
+            AppendMenu(hMarksheetMenu4,MF_STRING,MARKSHEET_MENU_DELETE_LN,"Delete by Last Name");
+            AppendMenu(hMarksheetMenu4,MF_STRING,MARKSHEET_MENU_DELETE_GRADE,"Delete by Grade");
         AppendMenu(hMarksheetMenu,MF_STRING,MARKSHEET_MENU_CALCULATE,"Calculate Gradewise Averages");
 
     AppendMenu(hMenu,MF_POPUP,(UINT_PTR)hAboutMenu,"About");

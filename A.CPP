@@ -972,7 +972,7 @@ void AddMenus(HWND hWnd)
     SetMenu(hWnd,hMenu);
     if(f<1)
     {
-        CreateWindowW(L"Static",L"CHOOSE FROM THE WINDOW ABOVE TO PERFORM ACTIONS.",WS_VISIBLE| WS_CHILD,200,150,250,80,hWnd,NULL,NULL,NULL);
+        CreateWindowW(L"Static",L"CHOOSE FROM THE WINDOW ABOVE TO PERFORM ACTIONS.",WS_VISIBLE| WS_CHILD,150,150,250,80,hWnd,NULL,NULL,NULL);
     }
     f++;
 }

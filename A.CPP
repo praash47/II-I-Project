@@ -100,15 +100,21 @@ void deleteStudentLN(HWND);
 void deleteStudentGrade(HWND);
 void viewStudent(HWND);
 
+void attendancePerform(HWND);
 void attendanceViewDate(HWND);
 void attendanceViewGrade(HWND);
 void attendanceDeleteDate(HWND);
 void attendanceDeleteGrade(HWND);
+void attendanceDisplay(HWND);
 
+void feeAdd(HWND);
 void checkID(HWND);
 void checkFN(HWND);
 void checkLN(HWND);
 void checkGrade(HWND);
+void feeBill(HWND);
+void feeUncleared(HWND);
+void feeDisplay(HWND);
 
 void addMarksheetID(HWND);
 void addMarksheetFN(HWND);
@@ -126,9 +132,11 @@ void deleteMarksheetID(HWND);
 void deleteMarksheetFN(HWND);
 void deleteMarksheetLN(HWND);
 void deleteMarksheetGrade(HWND);
+void gradAvg(HWND);
 
 void about_group(HWND);
 void about_project(HWND);
+void brief_usage_guide(HWND);
 
 wchar_t firstName[20],lastName[20],dob[10],gen[10],add[50],phone[10],prog[20],start[10];
 int f=0;
@@ -231,7 +239,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             break;
 
         case ATTENDANCE_MENU_PERFORM:
-            DestroyWindow(hWnd);
+            attendancePerform(hWnd);
             break;
 
         case ATTENDANCE_MENU_VIEW_DATE:
@@ -249,11 +257,11 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             break;
 
         case ATTENDANCE_MENU_DISPLAY:
-            DestroyWindow(hWnd);
+            attendanceDisplay(hWnd);
             break;
 
         case FEES_MENU_ADD:
-            DestroyWindow(hWnd);
+            feeAdd(hWnd);
             break;
 
         case FEES_MENU_CHECK_ID:
@@ -270,13 +278,13 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             break;
 
         case FEES_MENU_BILL:
-            DestroyWindow(hWnd);
+            feeBill(hWnd);
             break;
         case FEES_MENU_UNCLEARED:
-            DestroyWindow(hWnd);
+            feeUncleared(hWnd);
             break;
         case FEES_MENU_DISPLAY:
-            DestroyWindow(hWnd);
+            feeDisplay(hWnd);
             break;
 
         case MARKSHEET_MENU_ADD_ID:
@@ -332,7 +340,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             break;
 
         case MARKSHEET_MENU_CALCULATE:
-            DestroyWindow(hWnd);
+            gradAvg(hWnd);
             break;
 
         case ABOUT_MENU_GROUP:
@@ -344,7 +352,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp)
             about_project(hWnd);
             break;
         case ABOUT_MENU_GUIDE:
-            DestroyWindow(hWnd);
+            brief_usage_guide(hWnd);
             break;
 
         case SUBMIT_STUDENT_DETAILS:
@@ -570,6 +578,11 @@ void viewStudent(HWND hWnd)
     CreateWindowW(L"Static",L"Students List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
 }
 
+void attendancePerform(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Perform Attendance",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,140,25,hWnd,NULL,NULL,NULL);
+}
 void attendanceViewDate(HWND hWnd)
 {
     clearscr(hWnd);
@@ -608,7 +621,47 @@ void attendanceDeleteGrade(HWND hWnd)
     CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
 
 }
+void attendanceDisplay(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Display Attendance",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,140,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Attendances List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+}
 
+void feeAdd(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Add Fees",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,65,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Fees by Student ID",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Fee Amount",WS_VISIBLE | WS_CHILD ,5,125,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,125,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Month",WS_VISIBLE | WS_CHILD ,5,165,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,165,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,125,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,165,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,195,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,195,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void feeBill(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Bill Fees By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,115,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the details of Bill to Check Out",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
+void feeUncleared(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Uncleared Fees",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,120,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Uncleared Fees List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+}
+void feeDisplay(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Display Fees",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,100,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Fees List:",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+}
 void checkID(HWND hWnd)
 {
    clearscr(hWnd);
@@ -684,6 +737,7 @@ void addMarksheetGrade(HWND hWnd)
 }
 void viewMarksheetID(HWND hWnd)
 {
+    clearscr(hWnd);
     CreateWindowW(L"Static",L"View Marksheet By ID",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,150,25,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Static",L"Enter the details of Student to View Marksheet of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Static",L"ID",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
@@ -789,6 +843,15 @@ void deleteMarksheetGrade(HWND hWnd)
     CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
 }
+void gradAvg(HWND hWnd)
+{
+    clearscr(hWnd);
+    CreateWindowW(L"Static",L"Gradewise Averages",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,155,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Enter the grade to check Gradewise Averages of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Button",L"Submit",WS_VISIBLE | WS_CHILD | WS_BORDER,5,115,75,35,hWnd,(HMENU)SUBMIT_STUDENT_DETAILS,NULL,NULL);;CreateWindowW(L"Button",L"Cancel",WS_VISIBLE | WS_CHILD | WS_BORDER,125,115,75,35,hWnd,(HMENU)CANCEL,NULL,NULL);
+}
 
 void about_group(HWND hWnd)
 {
@@ -800,11 +863,15 @@ void about_group(HWND hWnd)
     CreateWindowW(L"Static",L"- Ram Shrestha (128)",WS_VISIBLE | WS_CHILD ,5,120,500,250,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Static",L"- Sudip Gyawali (136)",WS_VISIBLE | WS_CHILD ,5,140,500,250,hWnd,NULL,NULL,NULL);
 }
-
 void about_project(HWND hWnd)
 {
     CreateWindowW(L"Static",L"About Project",WS_VISIBLE | WS_CHILD | WS_BORDER,5,5,100,25,hWnd,NULL,NULL,NULL);
 }
+void brief_usage_guide(HWND hWnd)
+{
+    CreateWindowW(L"Static",L"Brief Usage Guide",WS_VISIBLE | WS_CHILD | WS_BORDER,5,5,125,25,hWnd,NULL,NULL,NULL);
+}
+
 
 void AddMenus(HWND hWnd)
 {

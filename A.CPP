@@ -846,7 +846,7 @@ void deleteMarksheetGrade(HWND hWnd)
 void gradAvg(HWND hWnd)
 {
     clearscr(hWnd);
-    CreateWindowW(L"Static",L"Gradewise Averages",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,155,25,hWnd,NULL,NULL,NULL);
+    CreateWindowW(L"Static",L"Gradewise Averages",WS_VISIBLE | WS_CHILD | WS_BORDER ,5,5,145,25,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Static",L"Enter the grade to check Gradewise Averages of",WS_VISIBLE | WS_CHILD ,5,45,500,50,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Static",L"Grade",WS_VISIBLE | WS_CHILD ,5,85,100,50,hWnd,NULL,NULL,NULL);CreateWindowW(L"Static",L":",WS_VISIBLE | WS_CHILD ,101,85,100,50,hWnd,NULL,NULL,NULL);
     CreateWindowW(L"Edit",L"",WS_VISIBLE | WS_CHILD | WS_BORDER,125,85,150,20,hWnd,NULL,NULL,NULL);
@@ -972,7 +972,7 @@ void AddMenus(HWND hWnd)
     SetMenu(hWnd,hMenu);
     if(f<1)
     {
-        CreateWindowW(L"Static",L"CHOOSE FROM THE WINDOW ABOVE TO PERFORM ACTIONS.",WS_VISIBLE| WS_CHILD,150,150,250,80,hWnd,NULL,NULL,NULL);
+        CreateWindowW(L"Static",L"CHOOSE FROM THE MENU ABOVE TO PERFORM ACTIONS.",WS_VISIBLE| WS_CHILD,130,150,250,80,hWnd,NULL,NULL,NULL);
     }
     f++;
 }
